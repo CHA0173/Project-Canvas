@@ -11,6 +11,7 @@ class DrawingEllipse extends PaintFunction{
         this.origX = coord[0];
         this.origY = coord[1];
     }
+    
     onDragging(coord,event){
         contextDraft.fillStyle = "#000000"
         //this.contextDraft.strokeStyle = "#df4b26";
