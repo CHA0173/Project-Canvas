@@ -18,6 +18,17 @@ class DrawingCircle extends PaintFunction{
     }
 
     onDragging(coord,event){
+<<<<<<< HEAD:shapes/draw-circle.js
+        contextDraft.fillStyle = "#000000"
+        //this.contextDraft.strokeStyle = "#df4b26";
+        contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
+        contextDraft.beginPath();
+        this.radius = [];
+        this.radius.push(Math.sqrt(Math.pow(coord[0]-this.origX, 2) + Math.pow(coord[1]-this.origY,2)))
+        contextDraft.arc(this.startCoords[0], this.startCoords[1], this.radius, 0, 360 )
+        contextDraft.closePath();
+        contextDraft.stroke();
+=======
         this.contextDraft.strokeStyle = "#f44";
         this.contextDraft.lineWidth = 5;
         this.contextDraft.clearRect
@@ -26,6 +37,7 @@ class DrawingCircle extends PaintFunction{
         this.contextDraft.arc
         (this.origX, this.origY, (Math.abs(this.origX - coord[0])),0,360 );
         this.contextDraft.stroke();
+>>>>>>> da51188... Add files via upload:draw-circle.js
     }
 
     onMouseMove(){ }
@@ -35,8 +47,13 @@ class DrawingCircle extends PaintFunction{
         this.contextDraft.clearRect
         (0,0,canvasDraft.width,canvasDraft.height);
         this.contextReal.beginPath();
+<<<<<<< HEAD:shapes/draw-circle.js
         this.contextReal.arc(this.startCoords[0], this.startCoords[1], this.radius, 0, 360 )
         this.contextReal.closePath();
+=======
+        this.contextReal.arc
+        (this.origX, this.origY, (Math.abs(this.origX - coord[0])),0,360 );
+>>>>>>> da51188... Add files via upload:draw-circle.js
         this.contextReal.stroke();
     }
     onMouseLeave(){ }

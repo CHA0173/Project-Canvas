@@ -12,8 +12,11 @@ class DrawingPolygon extends PaintFunction{
     }
     
     onMouseDown(coord,event){
+<<<<<<< HEAD:shapes/draw-polygon.js
+=======
         this.contextDraft.strokeStyle = "#f44";
         this.contextDraft.lineWidth = 2;
+>>>>>>> da51188... Add files via upload:draw-polygon.js
         this.origX = coord[0];
         this.origY = coord[1];
 

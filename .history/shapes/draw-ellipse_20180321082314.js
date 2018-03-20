@@ -29,8 +29,11 @@ class DrawingEllipse extends PaintFunction{
         
     }
     onMouseUp(coord){
+<<<<<<< HEAD:shapes/draw-ellipse.js
+=======
         this.contextReal.strokeStyle = "#f44";
         this.contextReal.lineWidth = 10;
+>>>>>>> da51188... Add files via upload:draw-ellipse.js
         this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
         this.contextReal.fillStyle = "#000000"
         this.contextReal.beginPath();
