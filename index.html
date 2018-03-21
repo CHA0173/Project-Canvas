@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.confirm.css">
+
+    <title>Online Paint App</title>
+</head>
+<body onload="init()">
+    <div id='toolbar'>        
+        <div class="container col-md-10 text-center">
+            <button type="button" class="btn btn-secondary" id="drawing-eraser">Eraser</button>
+            <button type="button" class="btn btn-secondary" id="drawing-freehand">Freehand</button>
+            <button type="button" class="btn btn-secondary" id="drawing-line">Line</button>
+            <button type="button" class="btn btn-secondary" id="drawing-rectangle">Rectangle</button>
+            <button type="button" class="btn btn-secondary" id="drawing-circle">Circle</button>
+            <button type="button" class="btn btn-secondary" id="drawing-arc">Arc</button>
+            <button type="button" class="btn btn-secondary" id="drawing-polygon">Polygon</button>
+            <button type="button" class="btn btn-secondary" id="drawing-ellipse">Ellipse</button>
+            <button type="button" class="btn btn-secondary" id="drawing-quadratic">Quadratic</button>
+            <button type="button" class="btn btn-secondary" id="drawing-bezier">Bezier</button>
+            <button type="button" class="btn btn-secondary" id="drawing-text">Text</button>
+            <button type="button" class="btn btn-secondary" id="drawing-clear" data-toggle="confirmation">Clear Canvas</button>
+        </div>
+<div id='coordinates'>X:     Y:</div>
+        <div id="width-control">
+            Line Width <span id='width-val'>10</span>
+            <div class="slidecontainer">
+                <input type="range" name='width-slider' min="1" max="100" value="10" class='slider' id="width-set" >
+            </div>
+        </div>
+        
+    </div>
+    
+
+    
+    <div id="canvas-container">
+            <canvas id="canvas-real" class="canvas" width='800px' height='600px'></canvas>
+            <canvas id="canvas-draft" class="canvas" width='800px' height='600px'></canvas>
+    </div>
+    
+
+
+    <script src="js/canvas-common.js"></script>
+	<script src="tools/width.js"></script>
+    <script type='text/javascript' src="shapes/draw-eraser.js"></script>
+    <script type='text/javascript' src="shapes/draw-freehand.js"></script>
+    <script type='text/javascript' src="shapes/draw-line.js"></script>
+    <script type='text/javascript' src="shapes/draw-rectangle.js"></script>
+    <script type='text/javascript' src="shapes/draw-circle.js"></script>
+    <script type='text/javascript' src="shapes/draw-arc.js"></script>
+    <script type='text/javascript' src="shapes/draw-polygon.js"></script>
+    <script type='text/javascript' src="shapes/draw-ellipse.js"></script>
+    <script type='text/javascript' src="shapes/draw-quadratic.js"></script>
+    <script type='text/javascript' src="shapes/draw-bezier.js"></script>
+    <script type='text/javascript' src="shapes/draw-text.js"></script>
+
+    
+    <script type='text/javascript'>
+            currentFunction = new DrawingFreehand(contextReal);
+            $('.canvas').css('cursor', 'url(cursors/brush.cur),auto');
+        $('#drawing-eraser').click(()=>{
+            currentFunction = new DrawingEraser(contextReal);
+            $('.canvas').css('cursor', 'url(cursors/eraser.cur),auto')
+        });
+        $('#drawing-freehand').click(()=>{
+            currentFunction = new DrawingFreehand(contextReal);
+            $('.canvas').css('cursor', 'url(cursors/brush.cur),auto');
+        });
+        $('#drawing-line').click(()=>{
+            currentFunction = new DrawingLine(contextReal,contextDraft);
+            $('.canvas').css('cursor', 'url(cursors/Precision.cur),auto');
+        });
+        $('#drawing-rectangle').click(()=>{
+            currentFunction = new DrawingRectangle(contextReal,contextDraft);
+            $('.canvas').css('cursor', 'url(cursors/Precision.cur),auto');
+        });
+        $('#drawing-circle').click(()=>{
+        currentFunction = new DrawingCircle(contextReal,contextDraft);
+            $('.canvas').css('cursor', 'url(cursors/Precision.cur),auto');
+        });
+        $('#drawing-arc').click(()=>{
+        currentFunction = new DrawingArc(contextReal,contextDraft);
+            $('.canvas').css('cursor', 'url(cursors/Precision.cur),auto');
+        });
+
+        $('#drawing-polygon').click(()=>{
+        currentFunction = new DrawingPolygon(contextReal,contextDraft);
+            $('.canvas').css('cursor', 'url(cursors/Precision.cur),auto');
+
+        });
+        $('#drawing-text').click(()=>{
+            currentFunction = new DrawingText(contextReal);
+            $('.canvas').css('cursor', 'url(cursors/Text.cur),auto');
+        });
+
+        $('#drawing-ellipse').click(()=>{
+        currentFunction = new DrawingEllipse(contextReal,contextDraft);
+          $('.canvas').css('cursor', 'url(cursors/Precision.cur),auto');
+        });
+            $('#drawing-quadratic').click(()=>{
+        currentFunction = new DrawingQuadratic(contextReal,contextDraft);
+            $('.canvas').css('cursor', 'url(cursors/Precision.cur),auto');
+        });
+            $('#drawing-bezier').click(()=>{
+        currentFunction = new DrawingBezier(contextReal,contextDraft);
+            $('.canvas').css('cursor', 'url(cursors/Precision.cur),auto');
+        });  
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script src="js/simple-touch.js"></script>
+
+
+
+</body>
+</html>

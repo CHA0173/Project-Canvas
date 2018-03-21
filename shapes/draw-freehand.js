@@ -1,13 +1,15 @@
 class DrawingFreehand extends PaintFunction{
     constructor(contextReal){
         super();
-        this.context = contextReal;            
+        this.context = contextReal;
+        //this.context.lineWidth = width            
     }
     
     onMouseDown(coord,event){
         this.context.strokeStyle = "#df4b26";
         this.context.lineJoin = "round";
-        this.context.lineWidth = 5;
+        this.context.lineCap = "round";
+        this.context.lineWidth = width;
         this.context.beginPath();
         this.context.moveTo(coord[0],coord[1]);
         this.draw(coord[0],coord[1]);
