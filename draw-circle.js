@@ -20,7 +20,7 @@ class DrawingCircle extends PaintFunction{
         (0,0,canvasDraft.width,canvasDraft.height);
         this.contextDraft.beginPath();
         this.contextDraft.arc
-        (this.origX, this.origY, (Math.abs(this.origX - coord[0])),0,360 );
+        (this.origX, this.origY, Math.pow(Math.pow(this.origX - coord[0],2)+Math.pow(this.origY - coord[1],2),0.5),0,360 );
         this.contextDraft.stroke();
     }
 
@@ -32,7 +32,7 @@ class DrawingCircle extends PaintFunction{
         (0,0,canvasDraft.width,canvasDraft.height);
         this.contextReal.beginPath();
         this.contextReal.arc
-        (this.origX, this.origY, (Math.abs(this.origX - coord[0])),0,360 );
+        (this.origX, this.origY, Math.pow(Math.pow(this.origX - coord[0],2)+Math.pow(this.origY - coord[1],2),0.5),0,360 );
         this.contextReal.stroke();
     }
     onMouseLeave(){ }
