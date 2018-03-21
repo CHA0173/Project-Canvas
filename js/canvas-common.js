@@ -2,11 +2,16 @@ let canvasReal = document.getElementById('canvas-real');
 let contextReal = canvasReal.getContext('2d');
 let canvasDraft = document.getElementById('canvas-draft');
 let contextDraft = canvasDraft.getContext('2d');
+let layer3 = document.getElementById('layer3');
+let ctx3 = layer3.getContext('2d');
+let layer4 = document.getElementById('layer4');
+let ctx4 = layer4.getContext('2d');
+
 let currentFunction;
 let dragging = false;
 //Tool settings
-let width = 5;
-let lineWidth = width;
+let newWidth = 5;
+let lineWidth = newWidth;
 let lineJoin = "round";
 let lineCap = "round"
 let strokeStyle = "red";

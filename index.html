@@ -28,26 +28,27 @@
             <button type="button" class="btn btn-secondary" id="drawing-clear" data-toggle="confirmation">Clear Canvas</button>
         </div>
 <div id='coordinates'>X:     Y:</div>
-        <div id="width-control">
-            Line Width <span id='width-val'>10</span>
-            <div class="slidecontainer">
-                <input type="range" name='width-slider' min="1" max="100" value="10" class='slider' id="width-set" >
-            </div>
+    <div id="width-control">
+        Line Width <span id='width-val'>5</span>
+        <div class="slidecontainer">
+            <input type="range" name='width-slider' min="1" max="100" value="10" class='slider' id="width-set" >
         </div>
-        
     </div>
+</div>
     
 
     
     <div id="canvas-container">
-            <canvas id="canvas-real" class="canvas" width='800px' height='600px'></canvas>
-            <canvas id="canvas-draft" class="canvas" width='800px' height='600px'></canvas>
-    </div>
+            <canvas id="canvas-draft" class="canvas" width='800px' height='600px' style="z-index: 99;" tabindex="1"></canvas>
+            <canvas id="canvas-real" class="canvas" width='800px' height='600px' style="z-index: 2;" tabindex="2"></canvas>
+            <canvas id="layer3" class="canvas" width='800px' height='600px' style="z-index: 3;" tabindex="3"></canvas>
+            <canvas id="layer4" class="canvas" width='800px' height='600px' style="z-index: 4;" tabindex="4"></canvas>
+
+        </div>
     
 
 
     <script src="js/canvas-common.js"></script>
-	<script src="tools/width.js"></script>
     <script type='text/javascript' src="shapes/draw-eraser.js"></script>
     <script type='text/javascript' src="shapes/draw-freehand.js"></script>
     <script type='text/javascript' src="shapes/draw-line.js"></script>
@@ -62,8 +63,8 @@
 
     
     <script type='text/javascript'>
-            currentFunction = new DrawingFreehand(contextReal);
-            $('.canvas').css('cursor', 'url(cursors/brush.cur),auto');
+            currentFunction = new DrawingQuadratic(contextReal);
+            $('.canvas').css('cursor', 'url(cursors/Precision.cur),auto');
         $('#drawing-eraser').click(()=>{
             currentFunction = new DrawingEraser(contextReal);
             $('.canvas').css('cursor', 'url(cursors/eraser.cur),auto')
@@ -120,6 +121,7 @@
     <script src="js/script.js"></script>
     <script src="js/hammer.min.js"></script>
     <script src="js/simple-touch.js"></script>
+    <script src="tools/width.js"></script>
 
 
 

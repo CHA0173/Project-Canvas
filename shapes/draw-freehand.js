@@ -9,7 +9,7 @@ class DrawingFreehand extends PaintFunction{
         this.context.strokeStyle = "#df4b26";
         this.context.lineJoin = "round";
         this.context.lineCap = "round";
-        this.context.lineWidth = width;
+        this.context.lineWidth = newWidth;
         this.context.beginPath();
         this.context.moveTo(coord[0],coord[1]);
         this.draw(coord[0],coord[1]);

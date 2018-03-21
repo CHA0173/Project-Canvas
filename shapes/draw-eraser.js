@@ -2,7 +2,7 @@ class DrawingEraser extends PaintFunction{
     constructor(contextReal){
         super();
         this.context = contextReal;
-        contextReal.lineWidth = width;            
+        contextReal.lineWidth = newWidth;            
     }
     
     onMouseDown(coord,event){

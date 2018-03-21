@@ -3,15 +3,15 @@ var setWidth = function(newWidth) {
         newWidth = minWidth;
     else if (newWidth>maxWidth)
         newWidth = maxWidth
-    width = newWidth
-    contextDraft.lineWidth = width;
-    contextReal.lineWidth = width;
-    $('#width-val').html(width);
+        //setWidth = newWidth
+    contextDraft.lineWidth = newWidth;
+    contextReal.lineWidth = newWidth;
+    $('#width-val').html(newWidth);
 }
 var minWidth = 0.5,
     maxWidth = 100,
     defaultWidth = 20,
-    interval = 5,
+    interval = 1,
     widthSpan = document.getElementById('width_val');
     widthSlide = document.getElementById('width-set');
 

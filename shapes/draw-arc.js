@@ -4,8 +4,8 @@ class DrawingArc extends PaintFunction{
         super();
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
-        contextDraft.lineWidth = width;
-        contextReal.lineWidth = width;
+        contextDraft.lineWidth = newWidth;
+        contextReal.lineWidth = newWidth;
     }
     
     onMouseDown(coord,event){
