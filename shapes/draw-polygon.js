@@ -5,7 +5,14 @@ class DrawingPolygon extends PaintFunction{
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
         contextDraft.lineWidth = newWidth;
+        contextDraft.strokeStyle = "#df4b26";
+        contextDraft.lineJoin = "round";
+        contextDraft.lineCap = "round";
         contextReal.lineWidth = newWidth;
+        contextReal.strokeStyle = "#df4b26";
+        contextReal.lineJoin = "round";
+        contextReal.lineCap = "round";
+
         this.startCoords = [];
         this.startLineCoords = [];
         this.endLineCoords = [];
@@ -14,6 +21,7 @@ class DrawingPolygon extends PaintFunction{
     onMouseDown(coord,event){
         this.origX = coord[0];
         this.origY = coord[1];
+        
 
         if (this.startCoords == '') {
             this.startCoords.push(coord[0], coord[1])
@@ -26,7 +34,10 @@ class DrawingPolygon extends PaintFunction{
             this.contextReal.moveTo(this.startLineCoords[0], this.startLineCoords[1])
             this.startLineCoords = [];
             this.startLineCoords.push(coord[0], coord[1]);
-            if (Math.abs(this.startCoords[0] - this.endLineCoords[0]) < 5 && Math.abs(this.startCoords[1] - this.endLineCoords[1]) < 5) {
+            var distance;
+            (newWidth >= 10 ? distance = newWidth/2 : distance = 5)
+             
+            if (Math.abs(this.startCoords[0] - this.endLineCoords[0]) < distance && Math.abs(this.startCoords[1] - this.endLineCoords[1]) < distance) {
                 this.endLineCoords[0] = this.startCoords[0];
                 this.endLineCoords[1] = this.startCoords[1];
                 this.contextReal.closePath()
@@ -58,7 +69,6 @@ class DrawingPolygon extends PaintFunction{
             
     }
     onMouseLeave(){
-        
     }
     onMouseEnter(){}
 }

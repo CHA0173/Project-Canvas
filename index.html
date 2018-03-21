@@ -43,8 +43,7 @@
             <canvas id="canvas-real" class="canvas" width='800px' height='600px' style="z-index: 2;" tabindex="2"></canvas>
             <canvas id="layer3" class="canvas" width='800px' height='600px' style="z-index: 3;" tabindex="3"></canvas>
             <canvas id="layer4" class="canvas" width='800px' height='600px' style="z-index: 4;" tabindex="4"></canvas>
-
-        </div>
+    </div>
     
 
 
@@ -63,7 +62,7 @@
 
     
     <script type='text/javascript'>
-            currentFunction = new DrawingQuadratic(contextReal);
+            currentFunction = new DrawingBezier(contextReal);
             $('.canvas').css('cursor', 'url(cursors/Precision.cur),auto');
         $('#drawing-eraser').click(()=>{
             currentFunction = new DrawingEraser(contextReal);

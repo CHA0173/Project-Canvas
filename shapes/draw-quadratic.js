@@ -10,19 +10,21 @@ class DrawingQuadratic extends PaintFunction{
         this.startCoords = [];
         this.startLineCoords = [];
         this.endLineCoords = [];
-        this.DrawCanvas = function(){
-            DrawCanvas();
+        this.DrawQuad = function(){
+            DrawQuad();
         };
         this.DrawCanvasReal = function() {
             DrawCanvasReal();
-        }
+        };
+        point = function getPoints() {};
+        this.style = function getStyles() {};
     }
 
     onMouseDown(coord,event) {
         this.origX = coord[0];
         this.origY = coord[1];
         
-            DrawCanvas();
+            DrawQuad();
 
             // start dragging
             var dx, dy;
@@ -43,8 +45,10 @@ class DrawingQuadratic extends PaintFunction{
 			//e = MousePos(e);
 			point[drag].x += coord[0] - dPoint.x;
 			point[drag].y += coord[1] - dPoint.y;
-			dPoint = {x: coord[0], y: coord[1]};
-			DrawCanvas();
+            dPoint = {x: coord[0], y: coord[1]};
+            onchange = getPoints(point);
+            DrawQuad();
+            console.log(point[drag].x,coord[0], dPoint.x )
 		}
     }
 
@@ -69,21 +73,31 @@ class DrawingQuadratic extends PaintFunction{
 
 var e, point, sytle, drag, dPoint, cp2 ='', slope, angle, center, pAngle, pSlope ;
 
-point = {
-    p1: { x:100, y:250 },
-    p2: { x:400, y:250 },
-   cp1: { x:250, y:100 }
-};
+function getPoints() {
 
-// default styles
-style = {
-    curve:	{ width: newWidth, color: "#333" },
-    cpline:	{ width: 1, color: "#C00" },
-    point: { radius: 10, width: 2, color: "#900", fill: "rgba(200,200,200,0.5)", arc1: 0, arc2: 2 * Math.PI }
+    return point = {
+        p1: { x:100, y:250 },
+        p2: { x:400, y:250 },
+        cp1: { x:250, y:100 }
+    };
 }
 
+function getStyles() {
+    // default styles
+    return style = {
+        curve:	{ width: newWidth, color: "#333" },
+        cpline:	{ width: 1, color: "#C00" },
+        point: { radius: 10, width: 2, color: "#900", fill: "rgba(200,200,200,0.5)", arc1: 0, arc2: 2 * Math.PI }
+    }
+}
+
+
 // DRAW CANVAS
-function DrawCanvas() {
+function DrawQuad() {
+
+    point = getPoints();
+    style = getStyles();
+
     contextDraft.clearRect(0, 0, canvas.width, canvas.height);
 
     // curve
@@ -103,13 +117,7 @@ function DrawCanvas() {
     contextDraft.beginPath();
     contextDraft.moveTo(point.p1.x, point.p1.y);
     contextDraft.lineTo(point.cp1.x, point.cp1.y);
-    if (point.cp2) {
-        contextDraft.moveTo(point.p2.x, point.p2.y);
-        contextDraft.lineTo(point.cp2.x, point.cp2.y);
-    }
-    else {
-        contextDraft.lineTo(point.p2.x, point.p2.y);
-    }
+    contextDraft.lineTo(point.p2.x, point.p2.y);
     contextDraft.stroke();
     
 
@@ -139,13 +147,7 @@ function DrawCanvasReal() {
     contextReal.beginPath();
     contextReal.moveTo(point.p1.x, point.p1.y);
     contextReal.lineTo(point.cp1.x, point.cp1.y);
-    if (point.cp2) {
-        contextReal.moveTo(point.p2.x, point.p2.y);
-        contextReal.lineTo(point.cp2.x, point.cp2.y);
-    }
-    else {
-        contextReal.lineTo(point.p2.x, point.p2.y);
-    }
+    contextReal.lineTo(point.p2.x, point.p2.y);
     contextReal.stroke();
     
     // curve
@@ -153,12 +155,7 @@ function DrawCanvasReal() {
     contextReal.strokeStyle = style.curve.color;
     contextReal.beginPath();
     contextReal.moveTo(point.p1.x, point.p1.y);
-    if (point.cp2) {
-        contextReal.bezierCurveTo(point.cp1.x, point.cp1.y, point.cp2.x, point.cp2.y, point.p2.x, point.p2.y);
-    }
-    else {
-        contextReal.quadraticCurveTo(point.cp1.x, point.cp1.y, point.p2.x, point.p2.y);
-    }
+    contextReal.quadraticCurveTo(point.cp1.x, point.cp1.y, point.p2.x, point.p2.y);
     contextReal.stroke();
 
     // control points
