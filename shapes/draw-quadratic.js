@@ -10,7 +10,7 @@ class DrawingQuadratic extends PaintFunction{
         this.startCoords = [];
         this.startLineCoords = [];
         this.endLineCoords = [];
-        this.DrawQuad = function(){ 
+        this.DrawQuad = function(){
             DrawQuad();
         };
         this.DrawCanvasReal = function() {
@@ -26,10 +26,10 @@ class DrawingQuadratic extends PaintFunction{
 
             // start dragging
             var dx, dy;
-            for (var p in point) {
-                dx = point[p].x - coord[0];
-                dy = point[p].y - coord[1];
-                if ((dx * dx) + (dy * dy) < style.point.radius * style.point.radius) {
+            for (var p in pointQuad) {
+                dx = pointQuad[p].x - coord[0];
+                dy = pointQuad[p].y - coord[1];
+                if ((dx * dx) + (dy * dy) < styleQuad.pointQuad.radius * styleQuad.pointQuad.radius) {
                     drag = p;
                     dPoint = {x: coord[0], y: coord[1]};
                     canvasDraft.style.cursor = "move";
@@ -41,8 +41,8 @@ class DrawingQuadratic extends PaintFunction{
     onDragging(coord,event){
         if (drag) {
 			//e = MousePos(e);
-			point[drag].x += coord[0] - dPoint.x;
-			point[drag].y += coord[1] - dPoint.y;
+			pointQuad[drag].x += coord[0] - dPoint.x;
+			pointQuad[drag].y += coord[1] - dPoint.y;
             dPoint = {x: coord[0], y: coord[1]};
             DrawQuad();
 		}
@@ -53,7 +53,6 @@ class DrawingQuadratic extends PaintFunction{
 
     onMouseUp(coord,event){
         dragging = false;
-        saveHistory();
 
     }
     onMouseLeave(){
@@ -68,20 +67,20 @@ class DrawingQuadratic extends PaintFunction{
 } // end of Class
 
 
-var e, point, sytle, drag, dPoint, cp2 ='', slope, angle, center, pAngle, pSlope ;
+var e, pointQuad, styleQuad, drag, dPoint, cp2 ='', slope, angle, center, pAngle, pSlope ;
 
 
-    point = {
+    pointQuad = {
         p1: { x:100, y:250 },
         p2: { x:400, y:250 },
         cp1: { x:250, y:100 }
     };
 
     // default styles
-    style = {
+    styleQuad = {
         curve:	{ width: newWidth, color: "#333" },
         cpline:	{ width: 1, color: "#C00" },
-        point: { radius: 10, width: 2, color: "#900", fill: "rgba(200,200,200,0.5)", arc1: 0, arc2: 2 * Math.PI }
+        pointQuad: { radius: 10, width: 2, color: "#900", fill: "rgba(200,200,200,0.5)", arc1: 0, arc2: 2 * Math.PI }
     }
 
 
@@ -93,32 +92,32 @@ function DrawQuad() {
 
     // curve
     contextDraft.lineWidth = newWidth;
-    contextDraft.strokeStyle = style.curve.color;
+    contextDraft.strokeStyle = styleQuad.curve.color;
     contextDraft.beginPath();
-    contextDraft.moveTo(point.p1.x, point.p1.y);
-    contextDraft.quadraticCurveTo(point.cp1.x, point.cp1.y, point.p2.x, point.p2.y);
+    contextDraft.moveTo(pointQuad.p1.x, pointQuad.p1.y);
+    contextDraft.quadraticCurveTo(pointQuad.cp1.x, pointQuad.cp1.y, pointQuad.p2.x, pointQuad.p2.y);
     contextDraft.stroke();
     var imgData = contextDraft.getImageData(0,0,800,600)
     ctx3.putImageData(imgData, 0, 0);
 
 
     // control lines
-    contextDraft.lineWidth = style.cpline.width;
-    contextDraft.strokeStyle = style.cpline.color;
+    contextDraft.lineWidth = styleQuad.cpline.width;
+    contextDraft.strokeStyle = styleQuad.cpline.color;
     contextDraft.beginPath();
-    contextDraft.moveTo(point.p1.x, point.p1.y);
-    contextDraft.lineTo(point.cp1.x, point.cp1.y);
-    contextDraft.lineTo(point.p2.x, point.p2.y);
+    contextDraft.moveTo(pointQuad.p1.x, pointQuad.p1.y);
+    contextDraft.lineTo(pointQuad.cp1.x, pointQuad.cp1.y);
+    contextDraft.lineTo(pointQuad.p2.x, pointQuad.p2.y);
     contextDraft.stroke();
     
 
     // control points
-    for (var p in point) {
-        contextDraft.lineWidth = style.point.width;
-        contextDraft.strokeStyle = style.point.color;
-        contextDraft.fillStyle = style.point.fill;
+    for (var p in pointQuad) {
+        contextDraft.lineWidth = styleQuad.pointQuad.width;
+        contextDraft.strokeStyle = styleQuad.pointQuad.color;
+        contextDraft.fillStyle = styleQuad.pointQuad.fill;
         contextDraft.beginPath();
-        contextDraft.arc(point[p].x, point[p].y, style.point.radius, style.point.arc1, style.point.arc2, true);
+        contextDraft.arc(pointQuad[p].x, pointQuad[p].y, styleQuad.pointQuad.radius, styleQuad.pointQuad.arc1, styleQuad.pointQuad.arc2, true);
         contextDraft.fill();
         contextDraft.stroke();
     }
@@ -133,29 +132,29 @@ function DrawCanvasReal() {
     contextDraft.clearRect(0, 0, canvas.width, canvas.height);
     
     // control lines
-    contextReal.lineWidth = style.cpline.width;
-    contextReal.strokeStyle = style.cpline.color;
+    contextReal.lineWidth = styleQuad.cpline.width;
+    contextReal.strokeStyle = styleQuad.cpline.color;
     contextReal.beginPath();
-    contextReal.moveTo(point.p1.x, point.p1.y);
-    contextReal.lineTo(point.cp1.x, point.cp1.y);
-    contextReal.lineTo(point.p2.x, point.p2.y);
+    contextReal.moveTo(pointQuad.p1.x, pointQuad.p1.y);
+    contextReal.lineTo(pointQuad.cp1.x, pointQuad.cp1.y);
+    contextReal.lineTo(pointQuad.p2.x, pointQuad.p2.y);
     contextReal.stroke();
     
     // curve
-    contextReal.lineWidth = style.curve.width;
-    contextReal.strokeStyle = style.curve.color;
+    contextReal.lineWidth = styleQuad.curve.width;
+    contextReal.strokeStyle = styleQuad.curve.color;
     contextReal.beginPath();
-    contextReal.moveTo(point.p1.x, point.p1.y);
-    contextReal.quadraticCurveTo(point.cp1.x, point.cp1.y, point.p2.x, point.p2.y);
+    contextReal.moveTo(pointQuad.p1.x, pointQuad.p1.y);
+    contextReal.quadraticCurveTo(pointQuad.cp1.x, pointQuad.cp1.y, pointQuad.p2.x, pointQuad.p2.y);
     contextReal.stroke();
 
     // control points
-    for (var p in point) {
-        contextReal.lineWidth = style.point.width;
-        contextReal.strokeStyle = style.point.color;
-        contextReal.fillStyle = style.point.fill;
+    for (var p in pointQuad) {
+        contextReal.lineWidth = styleQuad.pointQuad.width;
+        contextReal.strokeStyle = styleQuad.pointQuad.color;
+        contextReal.fillStyle = styleQuad.pointQuad.fill;
         contextReal.beginPath();
-        contextReal.arc(point[p].x, point[p].y, style.point.radius, style.point.arc1, style.point.arc2, true);
+        contextReal.arc(pointQuad[p].x, pointQuad[p].y, styleQuad.pointQuad.radius, styleQuad.pointQuad.arc1, styleQuad.pointQuad.arc2, true);
         contextReal.fill();
         contextReal.stroke();
     }
