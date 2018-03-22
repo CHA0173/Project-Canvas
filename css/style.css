@@ -1,0 +1,45 @@
+body{
+    overflow:hidden;
+}
+#canvas-container{
+    height:600px;
+    
+}
+.canvas{
+    border:1px black dotted;
+    position:absolute;
+    top:100px;
+    bottom:0px;
+    left:150px;
+    right:0px;
+    cursor: pointer;
+}
+
+#canvas-draft{
+    background-color: transparent;
+    z-index: 1;
+}
+
+
+
+.draw { 
+    cursor: pointer;
+    border:1px solid teal;
+    
+}
+button {
+    margin: 2px;
+}
+#toolbar {
+    padding: 10px;
+    position: fixed;
+}
+
+.width_control{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+    background-color: gray;
+}
