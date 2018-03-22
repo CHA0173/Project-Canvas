@@ -84,7 +84,29 @@
                                 <label class="btn btn-primary" id="draw-ellipse" data-hover="Ellipse">
                                     <input type="radio" name="options" id="option11" autocomplete="off"><i class="far fa-circle" style="transform: scale(2,1);"></i>
                                 </label>
+                                <label class="btn btn-primary" id="draw-line" data-hover="Line">
+                                    <input type="radio" name="options" id="option12" autocomplete="off"><i class="fas fa-minus" style="transform: scale(2.5,1);"></i>
+                                </label>
                             </div>
+
+                            <div class="col-xl-12">
+                                <label class="btn btn-primary" id="draw-arc" data-hover="Arc">
+                                    <input type="radio" name="options" id="option13" autocomplete="off"><i class="fas fa-circle-notch"></i>
+                                </label>
+                                <label class="btn btn-primary" id="draw-quadratic" data-hover="Quadratic">
+                                    <input type="radio" name="options" id="option11" autocomplete="off"><i class="fas fa-superscript"></i>
+                                </label>
+                            </div>
+
+                            <div class="col-xl-12">
+                                <label class="btn btn-primary" id="drawing-clear" data-hover="Clear">
+                                    <input type="radio" name="options" id="option13" autocomplete="off"><i class="fas fa-shower"></i>
+                                </label>
+                                <!-- <label class="btn btn-primary" id="draw-quadratic" data-hover="Quadratic">
+                                    <input type="radio" name="options" id="option11" autocomplete="off"><i class="fas fa-superscript"></i>
+                                </label> -->
+                            </div>
+
 
                         </div>
                         
@@ -127,6 +149,10 @@
         <script type='text/javascript' src="draw-freehand.js"></script>
         <script type='text/javascript' src="draw-polygon.js"></script>
         <script type='text/javascript' src="draw-text.js"></script>
+        <script type='text/javascript' src="draw-line.js"></script>
+        <script type='text/javascript' src="draw-arc.js"></script>
+        <script type='text/javascript' src="draw-quadratic.js"></script>
+        <script type='text/javascript' src="script.js"></script>
         <script type='text/javascript'>
 
             $('#draw-rectangle').click(() => {
@@ -150,8 +176,22 @@
             $('#draw-text').click(() => {
                 currentFunction = new DrawingText(contextReal, contextDraft);
             });
+            $('#draw-line').click(() => {
+                currentFunction = new DrawingText(contextReal, contextDraft);
+            });
+            $('#draw-arc').click(() => {
+                currentFunction = new DrawingText(contextReal, contextDraft);
+            });
+            $('#draw-quadratic').click(() => {
+                currentFunction = new DrawingText(contextReal, contextDraft);
+            });
+            $('#draw-quadratic').click(() => {
+                currentFunction = new DrawingText(contextReal, contextDraft);
+            });
+            $('#drawing-clear').click(() => {
+                currentFunction = new DrawingText(contextReal, contextDraft);
+            });
             currentFunction = new DrawingRectangle(contextReal, contextDraft);
-
 
         </script>
 

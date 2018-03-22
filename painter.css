@@ -252,6 +252,58 @@ text-align: center;
 text-transform: uppercase;
 }
 
-.far fa-circle {
-    transform: scale(1.5,1);
+#draw-line:hover {
+font-size: 0px;
+}
+                                                        
+#draw-line:hover:after {
+content: attr(data-hover);
+font-size: 13px;
+display: flex;
+justify-content: center;
+align-content: center;
+text-align: center;
+text-transform: uppercase;
+}
+
+#draw-arc:hover {
+font-size: 0px;
+}
+                                                        
+#draw-arc:hover:after {
+content: attr(data-hover);
+font-size: 13px;
+display: flex;
+justify-content: center;
+align-content: center;
+text-align: center;
+text-transform: uppercase;
+}
+
+#draw-quadratic:hover {
+font-size: 0px;
+}
+                                                            
+#draw-quadratic:hover:after {
+content: attr(data-hover);
+font-size: 13px;
+display: flex;
+justify-content: center;
+align-content: center;
+text-align: center;
+text-transform: uppercase;
+}
+
+#drawing-clear:hover {
+font-size: 0px;
+}
+                                                                
+#drawing-clear:hover:after {
+content: attr(data-hover);
+font-size: 13px;
+display: flex;
+justify-content: center;
+align-content: center;
+text-align: center;
+text-transform: uppercase;
 }
