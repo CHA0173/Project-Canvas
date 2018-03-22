@@ -11,13 +11,11 @@ $(document).ready(function(){
                 'Yes'   : {
                     'class' : 'blue',
                     'action': function(){
-                        //canvas.width = canvas.width;
-                        contextDraft.clearRect(0,0,canvasDraft.width,canvasReal.height)
-                        contextReal.clearRect(0,0,canvasReal.width,canvasReal.height)
-                        ctx3.clearRect(0,0,canvasReal.width,canvasReal.height)
-                        ctx4.clearRect(0,0,canvasReal.width,canvasReal.height)
-
-                        //elem.slideUp();
+                        this.contexts = [contextDraft, contextReal, ctx3, ctx4]
+                        for (var c in this.contexts) {
+                            ctx = this.contexts[c]; 
+                            ctx.clearRect(0,0,canvasDraft.width,canvasDraft.height);
+                        }
                     }
                 },
                 'No'    : {

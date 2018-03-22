@@ -17,14 +17,12 @@ let lineCap = "round"
 let strokeStyle = "red";
 let fillStyle = "blue";
 
-
-/*let canvas = document.getElementsByClassName('canvas');
-contextReal.canvas.width = window.innerWidth -200;
-contextReal.canvas.height = window.innerHeight -200;
-contextDraftcontextDraft.canvas.width = window.innerWidth -200;
-contextDraft.canvas.height = window.innerHeight -200;
-*/
-
+this.contexts = [contextDraft, contextReal, ctx3, ctx4]
+for (var c in this.contexts) {
+    ctx = this.contexts[c]; 
+    ctx.canvas.width = window.innerWidth -200;
+    ctx.canvas.height = window.innerHeight -200;
+}
 
 $('#canvas-draft').mousedown(function(e){
     let mouseX = e.pageX - this.offsetLeft;
