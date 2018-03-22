@@ -16,8 +16,6 @@ class DrawingQuadratic extends PaintFunction{
         this.DrawCanvasReal = function() {
             DrawCanvasReal();
         };
-        point = function getPoints() {};
-        this.style = function getStyles() {};
     }
 
     onMouseDown(coord,event) {
@@ -46,9 +44,7 @@ class DrawingQuadratic extends PaintFunction{
 			point[drag].x += coord[0] - dPoint.x;
 			point[drag].y += coord[1] - dPoint.y;
             dPoint = {x: coord[0], y: coord[1]};
-            onchange = getPoints(point);
             DrawQuad();
-            console.log(point[drag].x,coord[0], dPoint.x )
 		}
     }
 
@@ -73,30 +69,24 @@ class DrawingQuadratic extends PaintFunction{
 
 var e, point, sytle, drag, dPoint, cp2 ='', slope, angle, center, pAngle, pSlope ;
 
-function getPoints() {
 
-    return point = {
+    point = {
         p1: { x:100, y:250 },
         p2: { x:400, y:250 },
         cp1: { x:250, y:100 }
     };
-}
 
-function getStyles() {
     // default styles
-    return style = {
+    style = {
         curve:	{ width: newWidth, color: "#333" },
         cpline:	{ width: 1, color: "#C00" },
         point: { radius: 10, width: 2, color: "#900", fill: "rgba(200,200,200,0.5)", arc1: 0, arc2: 2 * Math.PI }
     }
-}
 
 
 // DRAW CANVAS
 function DrawQuad() {
 
-    point = getPoints();
-    style = getStyles();
 
     contextDraft.clearRect(0, 0, canvas.width, canvas.height);
 

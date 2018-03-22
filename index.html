@@ -57,12 +57,12 @@
     <script type='text/javascript' src="shapes/draw-polygon.js"></script>
     <script type='text/javascript' src="shapes/draw-ellipse.js"></script>
     <script type='text/javascript' src="shapes/draw-quadratic.js"></script>
-    <script type='text/javascript' src="shapes/draw-bezier.js"></script>
+    <!--script type='text/javascript' src="shapes/draw-bezier.js"></script-->
     <script type='text/javascript' src="shapes/draw-text.js"></script>
 
     
     <script type='text/javascript'>
-            currentFunction = new DrawingBezier(contextReal);
+            currentFunction = new DrawingQuadratic(contextReal);
             $('.canvas').css('cursor', 'url(cursors/Precision.cur),auto');
         $('#drawing-eraser').click(()=>{
             currentFunction = new DrawingEraser(contextReal);
