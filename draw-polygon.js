@@ -10,7 +10,8 @@ class DrawingPolygon extends PaintFunction{
     }
     
     onMouseDown(coord,event){
-        //debugger
+        this.contextDraft.strokeStyle = "#f44";
+        this.contextDraft.lineWidth = 2;
         this.origX = coord[0];
         this.origY = coord[1];
 
@@ -44,6 +45,8 @@ class DrawingPolygon extends PaintFunction{
     }
 
     onMouseMove(coord){
+        this.contextReal.strokeStyle = "#f44";
+        this.contextReal.lineWidth = 2;
         this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
         this.contextDraft.beginPath();
         this.contextDraft.moveTo(this.startLineCoords[0], this.startLineCoords[1])
