@@ -53,6 +53,8 @@ class DrawingQuadratic extends PaintFunction{
 
     onMouseUp(coord,event){
         dragging = false;
+        saveHistory();
+
 
     }
     onMouseLeave(){
@@ -88,7 +90,7 @@ var e, pointQuad, styleQuad, drag, dPoint, cp2 ='', slope, angle, center, pAngle
 function DrawQuad() {
 
 
-    contextDraft.clearRect(0, 0, canvas.width, canvas.height);
+    contextDraft.clearRect(0, 0, canvasDraft.width, canvasDraft.height);
 
     // curve
     contextDraft.lineWidth = newWidth;
