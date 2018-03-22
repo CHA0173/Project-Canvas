@@ -1,44 +1,40 @@
-var Undolist = [];
-var Redolist = [];
-var canvas = document.getElementById( 'canvas-real' );
-var ctx = canvas.getContext('2d');
-var link = document.getElementById('save');
-link.innerHTML = 'download image';
-
-
+var newList = [];
+var step = 0;
 
 
 
 function saveHistory() {
-  link.href = canvas.toDataURL();
-  Undolist.push(canvas.toDataURL());
 
+  step++;
+  
+  lastStep = canvasReal.toDataURL();
+  
+  newList.push(lastStep);
 }
 
-$("#save").click(saveHistory());
-
-$("#undo").click(function(){
-  let firstPopItem = Undolist.pop();
-  Redolist.push(firstPopItem);
-  let img = document.createElement('img') ;
-  img.src = firstPopItem;
-  img.onload = () => {
-    ctx.clearRect(0, 0, 2000, 1080);
-    ctx.drawImage(img, 0, 0, 2000, 1080, 0, 0, 2000, 1080);   
+$("#undo").click(function () {
+  if (step > 0) {
+    step--;
+    let lastURL = newList[step - 1];
+    let img = document.createElement('img');
+    img.src = lastURL;
+    img.onload = () => {
+      contextReal.clearRect(0, 0, canvasReal.width, canvasReal.height);
+      contextReal.drawImage(img, 0, 0);
+    }
   }
 })
 
-$("#Redo").click(function(){
-  let secondPopItem = Redolist.pop();
-  // var img = new Element('img', {'src':secondPopItem()});
-  let img = document.createElement('img') ;
-  img.src = secondPopItem;
-  // <img src="123" />
-  img.onload = function() {
-    ctx.clearRect(0, 0, 2000, 1080);
-    ctx.drawImage(img, 0, 0, 2000, 1080, 0, 0, 2000, 1080);
+$("#redo").click(function () {
+  if (newList.length > step) {
+    step++;
+    let lastURL = newList[step - 1];
+    let img = document.createElement('img');
+    img.src = lastURL;
+    img.onload = () => {
+      contextReal.clearRect(0, 0, canvasReal.width, canvasReal.height);
+      contextReal.drawImage(img, 0, 0);
+    }
+
   }
 })
-
-
-
