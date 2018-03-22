@@ -13,7 +13,7 @@ class DrawingEraser extends PaintFunction{
         for (var c=1; c < this.contexts.length; c++) {
             this.contextDraft.clearRect(0,0,canvasDraft.width,canvasDraft.height);
             ctx = this.contexts[c]; 
-            ctx.strokeStyle = "#ffffff";
+            ctx.strokeStyle = "rgba(225,225,225,0)";
             ctx.lineJoin = "round";
             ctx.lineCap = "round";
             ctx.lineWidth = newWidth;        
@@ -38,14 +38,17 @@ class DrawingEraser extends PaintFunction{
         for (var d=1; d < this.contexts.length; d++) {
 
             ctx = this.contexts[d]; 
-            ctx.strokeStyle = "#ffffff";
+            ctx.strokeStyle = "rgba(0,0,0,1)";
             ctx.lineJoin = "round";
             ctx.lineCap = "round";
             ctx.lineWidth = newWidth;        
     
-            ctx.moveTo(x,y);
-            ctx.closePath();
-            ctx.stroke();  
+            ctx.save();
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(x, y, newWidth, 0, 2 * Math.PI, false);
+            ctx.fill();
+            ctx.restore();
         }
     }
 }
