@@ -19,7 +19,7 @@ ctx3.rect(0, 0, width3, height3);
 fillGradientFill();
 
 ctx4.rect(0, 0, width4, height4);
-var grd2 = ctx4.createLinearGradient(0, 0, 0, height3);
+var grd2 = ctx4.createLinearGradient(0, 0, 0, height4);
 grd2.addColorStop(0, 'rgba(255, 0, 0, 1)');
 grd2.addColorStop(0.17, 'rgba(255, 255, 0, 1)');
 grd2.addColorStop(0.34, 'rgba(0, 255, 0, 1)');
@@ -30,10 +30,10 @@ grd2.addColorStop(1, 'rgba(255, 0, 0, 1)');
 ctx4.fillStyle = grd2;
 ctx4.fill();
 
-function clickFill(e) {
+function click(e) {
   x = e.offsetX;
   y = e.offsetY;
-  var imageDataFill = ctx4.getImageDataFill(x, y, 1, 1).data;
+  var imageDataFill = ctx4.getImageData(x, y, 1, 1).data;
   rgbaColorFill = 'rgba(' + imageDataFill[0] + ',' + imageDataFill[1] + ',' + imageDataFill[2] + ',1)';
   fillGradientFill();
 }
@@ -73,12 +73,12 @@ function mouseup(e) {
 function changeColorFill(e) {
   x = e.offsetX;
   y = e.offsetY;
-  var imageDataFill = ctx3.getImageDataFill(x, y, 1, 1).data;
+  var imageDataFill = ctx3.getImageData(x, y, 1, 1).data;
   rgbaColorFill = 'rgba(' + imageDataFill[0] + ',' + imageDataFill[1] + ',' + imageDataFill[2] + ',1)';
   colorLabelFill.style.backgroundColor = rgbaColorFill;
 }
 
-colorStripFill.addEventListener("clickFill", clickFill, false);
+colorStripFill.addEventListener("click", click, false);
 
 colorBlockFill.addEventListener("mousedown", mousedown, false);
 colorBlockFill.addEventListener("mouseup", mouseup, false);
