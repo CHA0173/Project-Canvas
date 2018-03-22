@@ -26,10 +26,10 @@ class DrawingBezier extends PaintFunction{
     
                 // start dragging
                 var dx, dy;
-                for (var p in point) {
-                    dx = point[p].x - coord[0];
-                    dy = point[p].y - coord[1];
-                    if ((dx * dx) + (dy * dy) < style.point.radius * style.point.radius) {
+                for (var p in pointBez) {
+                    dx = pointBez[p].x - coord[0];
+                    dy = pointBez[p].y - coord[1];
+                    if ((dx * dx) + (dy * dy) < styleBez.pointBez.radius * styleBez.pointBez.radius) {
                         drag = p;
                         dPoint = {x: coord[0], y: coord[1]};
                         canvasDraft.style.cursor = "move";
@@ -41,8 +41,8 @@ class DrawingBezier extends PaintFunction{
         onDragging(coord,event){
             if (drag) {
                 //e = MousePos(e);
-                point[drag].x += coord[0] - dPoint.x;
-                point[drag].y += coord[1] - dPoint.y;
+                pointBez[drag].x += coord[0] - dPoint.x;
+                pointBez[drag].y += coord[1] - dPoint.y;
                 dPoint = {x: coord[0], y: coord[1]};
                 DrawBez();
             }
@@ -66,57 +66,57 @@ class DrawingBezier extends PaintFunction{
     
     } // end of Class
     
+var e, pointBez, styleBez, drag, dPoint, cp2 ='', slope, angle, center, pAngle, pSlope ;
     
-    
-    // default styles
-    style = {
-        curve:	{ width: newWidth, color: "#333" },
-        cpline:	{ width: 1, color: "#C00" },
-        point: { radius: 10, width: 2, color: "#900", fill: "rgba(200,200,200,0.5)", arc1: 0, arc2: 2 * Math.PI }
-    }
-    
-    // DRAW CANVAS
-    function DrawBez() {
-var e, point, sytle, drag, dPoint, cp2 ='', slope, angle, center, pAngle, pSlope ;
-    
-    point = {
+    pointBez = {
         p1: { x:100, y:250 },
         p2: { x:400, y:250 },
        cp1: { x:250, y:100 },
        cp2: { x: 350, y: 100 }
     };
     
+    
+    // default styles
+    styleBez = {
+        curve:	{ width: newWidth, color: "#333" },
+        cpline:	{ width: 1, color: "#C00" },
+        pointBez: { radius: 10, width: 2, color: "#900", fill: "rgba(200,200,200,0.5)", arc1: 0, arc2: 2 * Math.PI }
+    }
+    
+    // DRAW CANVAS
+    function DrawBez() {
+    
         contextDraft.clearRect(0, 0, canvas.width, canvas.height);
     
         // curve
         contextDraft.lineWidth = newWidth;
-        contextDraft.strokeStyle = style.curve.color;
+        contextDraft.strokeStyle = styleBez.curve.color;
         contextDraft.beginPath();
-        contextDraft.moveTo(point.p1.x, point.p1.y);
-        contextDraft.bezierCurveTo(point.cp1.x, point.cp1.y, point.cp2.x, point.cp2.y, point.p2.x, point.p2.y);
+        contextDraft.moveTo(pointBez.p1.x, pointBez.p1.y);
+        contextDraft.bezierCurveTo(pointBez.cp1.x, pointBez.cp1.y, pointBez.cp2.x, pointBez.cp2.y, pointBez.p2.x, pointBez.p2.y);
         contextDraft.stroke();
         var imgData = contextDraft.getImageData(0,0,800,600)
-        ctx3.putImageData(imgData, 0, 0);
+        ctx4.putImageData(imgData, 0, 0);
     
     
         // control lines
-        contextDraft.lineWidth = style.cpline.width;
-        contextDraft.strokeStyle = style.cpline.color;
+        contextDraft.lineWidth = styleBez.cpline.width;
+        contextDraft.strokeStyle = styleBez.cpline.color;
         contextDraft.beginPath();
-        contextDraft.moveTo(point.p1.x, point.p1.y);
-        contextDraft.lineTo(point.cp1.x, point.cp1.y);
-        contextDraft.moveTo(point.p2.x, point.p2.y);
-        contextDraft.lineTo(point.cp2.x, point.cp2.y);
+        contextDraft.moveTo(pointBez.p1.x, pointBez.p1.y);
+        contextDraft.lineTo(pointBez.cp1.x, pointBez.cp1.y);
+        contextDraft.moveTo(pointBez.p2.x, pointBez.p2.y);
+        contextDraft.lineTo(pointBez.cp2.x, pointBez.cp2.y);
         contextDraft.stroke();
         
     
         // control points
-        for (var p in point) {
-            contextDraft.lineWidth = style.point.width;
-            contextDraft.strokeStyle = style.point.color;
-            contextDraft.fillStyle = style.point.fill;
+        for (var p in pointBez) {
+            contextDraft.lineWidth = styleBez.pointBez.width;
+            contextDraft.strokeStyle = styleBez.pointBez.color;
+            contextDraft.fillStyle = styleBez.pointBez.fill;
             contextDraft.beginPath();
-            contextDraft.arc(point[p].x, point[p].y, style.point.radius, style.point.arc1, style.point.arc2, true);
+            contextDraft.arc(pointBez[p].x, pointBez[p].y, styleBez.pointBez.radius, styleBez.pointBez.arc1, styleBez.pointBez.arc2, true);
             contextDraft.fill();
             contextDraft.stroke();
         }
