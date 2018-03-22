@@ -1,0 +1,162 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/regular.css" integrity="sha384-A/oR8MwZKeyJS+Y0tLZ16QIyje/AmPduwrvjeH6NLiLsp4cdE4uRJl8zobWXBm4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P"
+        crossorigin="anonymous">
+    <link href="painter.css" rel="stylesheet" type='text/css'>
+</head>
+
+<body>
+
+    <header>
+
+
+
+    </header>
+
+    <section>
+
+        <div class="content ">
+
+            <div class="tools">
+
+                <div class="buttons">
+
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
+                        <div  class="row no gutter">
+
+                            <div class="col-xl-12">
+                                <label class="btn btn-primary" id="draw-rectangle" data-hover="Rectangle">
+                                    <input type="radio" name="options" id="option1" autocomplete="off"><i class="far fa-square"></i>
+                                </label>
+                                <label class="btn btn-primary" id="draw-freehand" data-hover="Pen">
+                                    <input type="radio" name="options" id="option2" autocomplete="off"><i class="fas fa-pencil-alt"></i>
+                                </label>
+                            </div>
+
+                            <div class="col-xl-12">
+                                <label class="btn btn-primary" id="draw-circle" data-hover="Circle">
+                                    <input type="radio" name="options" id="option3" autocomplete="off"><i class="far fa-circle"></i>
+                                </label>
+                                <label class="btn btn-primary" id="draw-polygon" data-hover="Polygon">
+                                    <input type="radio" name="options" id="option4" autocomplete="off"><i class="far fa-star"></i>
+                                </label>
+                            </div>
+
+                            <div class="col-xl-12">
+                                <label class="btn btn-primary" id="draw-text" data-hover="Text">
+                                    <input type="radio" name="options" id="option5" autocomplete="off"><i class="fas fa-font"></i>
+                                </label>
+                                <label class="btn btn-primary" id="filling" data-hover="Fill">
+                                    <input type="radio" name="options" id="option6" autocomplete="off"><i class="fas fa-tint"></i>
+                                </label>
+                            </div>
+
+                            <div class="col-xl-12">
+                                <label class="btn btn-primary" id="draw-eraser"  data-hover="Eraser">
+                                    <input type="radio" name="options" id="option7" autocomplete="off"><i class="fas fa-eraser"></i>
+                                </label>
+                                <label class="btn btn-primary" id="expand" data-hover="Expand">
+                                    <input type="radio" name="options" id="option8" autocomplete="off"><i class="fas fa-expand"></i>
+                                </label>
+                            </div>
+
+                            <div class="col-xl-12">
+                                <label class="btn btn-primary" id="redo" data-hover="Redo">
+                                    <input type="radio" name="options" id="option9" autocomplete="off"><i class="fas fa-redo"></i>
+                                </label>
+                                <label class="btn btn-primary" id="undo" data-hover="Undo">
+                                    <input type="radio" name="options" id="option10" autocomplete="off"><i class="fas fa-undo"></i>
+                                </label>
+                            </div>
+
+                            <div class="col-xl-12">
+                                <label class="btn btn-primary" id="draw-ellipse" data-hover="Ellipse">
+                                    <input type="radio" name="options" id="option11" autocomplete="off"><i class="far fa-circle" style="transform: scale(2,1);"></i>
+                                </label>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+                <div class="color">
+
+                    <label for="color-input" id="color-label" style="background-color: white"></label>
+                    <input type="checkbox" id="color-input" checked></input>
+
+                    <div id="color-picker">
+                        <canvas id="color-strip" height="30" width="110"></canvas>
+                        <canvas id="color-block" height="150" width="150"></canvas>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="canvas-container">
+                <canvas id="canvas-real" class="canvas" width='1280px' height='720px'></canvas>
+                <canvas id="canvas-draft" class="canvas" width='1280px' height='720px'></canvas>
+            </div>
+
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+        <script type='text/javascript' src="canvas-common.js"></script>
+        <script type='text/javascript' src="draw-rectangle.js"></script>
+        <script type='text/javascript' src="draw-eraser.js"></script>
+        <script type='text/javascript' src="draw-circle.js"></script>
+        <script type='text/javascript' src="draw-ellipse.js"></script>
+        <script type='text/javascript' src="draw-freehand.js"></script>
+        <script type='text/javascript' src="draw-polygon.js"></script>
+        <script type='text/javascript' src="draw-text.js"></script>
+        <script type='text/javascript'>
+
+            $('#draw-rectangle').click(() => {
+                currentFunction = new DrawingRectangle(contextReal, contextDraft);
+            });
+            $('#draw-eraser').click(() => {
+                currentFunction = new DrawingEraser(contextReal, contextDraft);
+            });
+            $('#draw-circle').click(() => {
+                currentFunction = new DrawingCircle(contextReal, contextDraft);
+            });
+            $('#draw-ellipse').click(() => {
+                currentFunction = new DrawingEllipse(contextReal, contextDraft);
+            });
+            $('#draw-freehand').click(() => {
+                currentFunction = new DrawingFreehand(contextReal, contextDraft);
+            });
+            $('#draw-polygon').click(() => {
+                currentFunction = new DrawingPolygon(contextReal, contextDraft);
+            });
+            $('#draw-text').click(() => {
+                currentFunction = new DrawingText(contextReal, contextDraft);
+            });
+            currentFunction = new DrawingRectangle(contextReal, contextDraft);
+
+
+        </script>
+
+    </section>
+
+</body>
+
+</html>
